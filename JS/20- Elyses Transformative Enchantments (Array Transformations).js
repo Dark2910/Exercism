@@ -218,10 +218,6 @@ middleTwo(deck); // => [5, 6]
  * @returns {number[]}
  */
 const sandwichTrick = (deck) => {
-   if(deck.length % 2 !== 0){
-      return deck
-   }
-
    const cards = [deck.pop(), deck.shift()]
    deck.splice(deck.length / 2, 0, ...cards);
 
@@ -229,8 +225,7 @@ const sandwichTrick = (deck) => {
 }
 
 deck = [1, 2, 3, 5, 6, 10];
-//sandwichTrick(deck); // => [2, 3, 10, 1, 5, 6]
-console.log(sandwichTrick(deck));
+sandwichTrick(deck); // => [2, 3, 10, 1, 5, 6]
 
 /**
  *  Every card that isn't 2 disappears
@@ -239,10 +234,25 @@ console.log(sandwichTrick(deck));
  *  In this trick, every card that isn't a 2 will disappear from the deck.
  */
 
-/* 
+/**
+ * 
+ * @param {number[]} deck 
+ * @returns {number[]}
+ */
+const twoIsSpecial = function(deck) {
+   return deck.filter((value) => value === 2)
+
+   for (let index = 0; index < deck.length; index++) {
+      
+      if(deck[index] !== 2)
+      deck.splice(index,1);
+      
+   }
+   return deck
+}
+
 deck = [1, 2, 3, 4, 10, 2];
 twoIsSpecial(deck); // => [2, 2]
- */
 
 /**
  *  Convert a shuffled deck into a perfectly ordered deck
@@ -250,10 +260,17 @@ twoIsSpecial(deck); // => [2, 2]
  *  Elyse wishes to demonstrate her mastery of reordering the cards perfectly - no matter how well shuffled.
  */
 
-/* 
+/**
+ * 
+ * @param {number[]} deck 
+ * @returns {number[]}
+ */
+const perfectlyOrdered = (deck) => {
+   return deck.sort((a, b) => a - b);
+}
+
 deck = [10, 1, 5, 3, 2, 8, 7];
 perfectlyOrdered(deck); // => [1, 2, 3, 5, 7, 8, 10]
- */
 
 /**
  *  Reorder the deck
@@ -263,7 +280,14 @@ perfectlyOrdered(deck); // => [1, 2, 3, 5, 7, 8, 10]
  *  The second card should end up second last etc.
  */
 
-/* 
+/**
+ * 
+ * @param {number[]} deck 
+ * @returns {number[]}
+ */
+const reorder = function(deck) {
+   return deck.reverse()
+}
+
 deck = [10, 1, 5, 3, 2];
 reorder(deck); // => [2, 3, 5, 1, 10]
- */
