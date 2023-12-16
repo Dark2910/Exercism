@@ -164,30 +164,20 @@ seeingDouble(deck); // => [2, 4, 6, 8, 20]
  * @returns {number[]}
  */
 const threeOfEachThree = (deck) => {
-/* 
-   if(deck.includes(3)){
+   return deck.flatMap((num) => (num === 3 ? Array.from({ length: 3 }).fill(3) : num));
 
-      this.deck = deck.map((value, index) => {
-
-         if(value == 3){
-            deck.splice(index, 0, 'Hola')
-         }
-      })
-
-      return deck
-   } */
-
-   let newDeck = deck.
-
-   deck.splice(1, 0, ...[3, 3]);
-   deck.splice(4, 0, ...[3, 3]);
-
-   return deck
+   const result = new Array();
+   for (let index = 0; index < deck.length; index++) {
+      if(deck[index] === 3){
+         result.push(...[3,3]);
+      }
+      result.push(deck[index]);
+   }
+   return result
 }
 
 deck = [1, 3, 9, 3, 7];
-//threeOfEachThree(deck); // => [1, 3, 3, 3, 9, 3, 3, 3, 7]
-console.log(threeOfEachThree(deck));
+threeOfEachThree(deck); // => [1, 3, 3, 3, 9, 3, 3, 3, 7]
 
 /**
  *  Find two cards from the exact middle of the deck
@@ -195,10 +185,24 @@ console.log(threeOfEachThree(deck));
  *  Elyse will take a deck of ten cards, and make every card disappear except the middle two cards.
  */
 
-/* 
+/**
+ * 
+ * @param {number[]} deck 
+ * @returns {number[]}
+ */
+const middleTwo = function(deck) {
+   const middleIndex = Math.floor(deck.length / 2);
+
+   if(deck.length % 2 === 0) {
+      return deck.slice(middleIndex - 1, middleIndex + 1)
+      //return [deck.slice(0, Math.floor(deck.length / 2)).pop(), deck.slice(Math.floor(deck.length / 2)).shift()]
+   }
+
+   return [deck[middleIndex]];
+}
+
 deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 middleTwo(deck); // => [5, 6]
- */
 
 /**
  *  The outside two cards will reappear in the middle of the deck
@@ -208,10 +212,25 @@ middleTwo(deck); // => [5, 6]
  *  You can assume that the deck has an even number of cards.
  */
 
-/* 
-deck = [1, 2, 3, 5, 6, 10];
-sandwichTrick(deck); // => [2, 3, 10, 1, 5, 6]
+/**
+ * 
+ * @param {number[]} deck 
+ * @returns {number[]}
  */
+const sandwichTrick = (deck) => {
+   if(deck.length % 2 !== 0){
+      return deck
+   }
+
+   const cards = [deck.pop(), deck.shift()]
+   deck.splice(deck.length / 2, 0, ...cards);
+
+   return deck
+}
+
+deck = [1, 2, 3, 5, 6, 10];
+//sandwichTrick(deck); // => [2, 3, 10, 1, 5, 6]
+console.log(sandwichTrick(deck));
 
 /**
  *  Every card that isn't 2 disappears
