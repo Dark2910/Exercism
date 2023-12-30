@@ -130,7 +130,7 @@ getFirstCard(deck); // => 5
  * @returns {number} second element of the deck
  */
 const getSecondCard = (deck) => {
-    const [, secondCard, ...newDeck] = deck
+    const [_, secondCard, ...newDeck] = deck
     return secondCard
 }
 
