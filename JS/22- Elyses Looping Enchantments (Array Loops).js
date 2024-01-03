@@ -54,7 +54,7 @@ cardTypeCheck([1, 2, 3, 4], cardType);
 const determineOddEvenCards = (deck, isEven) => {
     let count = 0;
     deck.forEach((value) => {
-        (isEven)? (value % 2 === 0)? count++ : count : (value % 2 === 0)? count : count++;
+        (isEven)? (value % 2 === 0)? count++ : count : (value % 2 === 1)? count++ : count;
     })
     return count;
 }
